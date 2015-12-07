@@ -8,15 +8,16 @@
 <body>
 
     <div id="quote"></div>
+    <div id="person"></div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         $.ajax({
-            url: "\quotes.json",
+            url: "quotes.json",
             success: function (data) {
                 var rand = Math.floor(Math.random() * data.length);
                 var obj = data[rand];
-                console.log(obj);
-                $('#quote')[0].innerHTML = obj['quote'];
+                $('#quote').text(obj['quote']);
+                $('#person').text('~' + obj['person']);
             }
         });
     </script>
