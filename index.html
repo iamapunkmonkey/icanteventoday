@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I Can't Even Today</title>
+
+</head>
+<body>
+
+    <div id="quote"></div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $.ajax({
+            url: "\quotes.json",
+            success: function (data) {
+                var rand = Math.floor(Math.random() * data.length);
+                var obj = data[rand];
+                console.log(obj);
+                $('#quote')[0].innerHTML = obj['quote'];
+            }
+        });
+    </script>
+</body>
+</html>
