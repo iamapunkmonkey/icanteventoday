@@ -6,7 +6,7 @@
 
 </head>
 <body>
-
+    <div id="image"></div>
     <q id="quote"></q>
     <cite id="person"></cite>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -17,7 +17,13 @@
                 var rand = Math.floor(Math.random() * data.length);
                 var obj = data[rand];
                 $('#quote').text(obj['quote']);
-                $('#person').text('~' + obj['person']);
+                $('#person').text(' ~ ' + obj['person']);
+                $.ajax({
+                    url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
+                    success: function(data){
+                        $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
+                    }
+                });
             }
         });
     </script>
