@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>I Can't Even Today</title>
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="image"></div>
-    <q id="quote"></q>
-    <cite id="person"></cite>
-    <div><img src="PoweredBy_200px-White_HorizText.png" /></div>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>
-        $.ajax({
-            url: "quotes.json",
-            success: function (data) {
-                var rand = Math.floor(Math.random() * data.length);
-                var obj = data[rand];
-                $('#quote').text(obj['quote']);
-                $('#person').text(' ~ ' + obj['person']);
-                $.ajax({
-                    url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
-                    success: function(data){
-                        $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
-                    }
-                });
-            }
-        });
-    </script>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="inner cover">
+                <h1 class="cover-heading">I Can't Even Today</h1>
+                <p class="lead">Providing inspirational quotes and happy GIFs to brighten up the day.</p>
+                <div id="image"></div>
+                <q id="quote"></q>
+                <br />
+                <cite id="person"></cite>
+                <br />
+                <br />
+                <div><img src="PoweredBy_200px-Black_HorizText.png" /></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $.ajax({
+        url: "quotes.json",
+        success: function (data) {
+            var rand = Math.floor(Math.random() * data.length);
+            var obj = data[rand];
+            $('#quote').text(obj['quote']);
+            $('#person').text(' ~ ' + obj['person']);
+            $.ajax({
+                url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
+                success: function (data) {
+                    $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
