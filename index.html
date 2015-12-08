@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script type='text/javascript' src='http://www.midijs.net/lib/midi.js'></script>
 </head>
 <body>
 <a href="https://github.com/iamapunkmonkey/icanteventoday"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
@@ -14,14 +15,19 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner cover">
-                <h1 class="cover-heading">I Can't Even Today</h1>
-                <p class="lead">Providing inspirational quotes and happy GIFs to brighten up the day.</p>
-                <div id="image" onclick="getQuote()"></div>
-                <q id="quote"></q>
+                <h1 class="cover-heading">Rick, I Can't Even Today</h1>
+                <p class="lead">Providing Rick Astley to brighten up the day.</p>
+                <div id="image"><img src="https://media.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif"></div>
+                <q id="quote">Never gonna give you up<br>
+                    Never gonna let you down<br>
+                    Never gonna run around and desert you<br>
+                    Never gonna make you cry<br>
+                    Never gonna say goodbye<br>
+                    Never gonna tell a lie and hurt you</q>
                 <br />
-                <cite id="person"></cite>
+                <cite id="person">~ Rick Astley</cite>
                 <br />
-                <h3><a onclick="getQuote()" href="#">Still can't even?</a></h3>
+                <h3><a href="http://icanteven.today">Still can't even?</a></h3>
                 <br />
                 <br />
                 <div><img src="PoweredBy_200px-Black_HorizText.png" /></div>
@@ -31,25 +37,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-    function getQuote() {
-        $.ajax({
-            url: "quotes.json",
-            success: function (data) {
-                var rand = Math.floor(Math.random() * data.length);
-                var obj = data[rand];
-                $('#quote').text(obj['quote']);
-                $('#person').text(' ~ ' + obj['person']);
-                $.ajax({
-                    url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
-                    success: function (data) {
-                        $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
-                    }
-                });
-            }
-        });
-    }
-
-    getQuote();
+    MIDIjs.play('song.mid');
 </script>
 
 <script>
