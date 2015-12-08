@@ -16,10 +16,12 @@
             <div class="inner cover">
                 <h1 class="cover-heading">I Can't Even Today</h1>
                 <p class="lead">Providing inspirational quotes and happy GIFs to brighten up the day.</p>
-                <div id="image"></div>
+                <div id="image" onclick="getQuote()"></div>
                 <q id="quote"></q>
                 <br />
                 <cite id="person"></cite>
+                <br />
+                <h3><a onclick="getQuote()" href="#">Still can't even?</a></h3>
                 <br />
                 <br />
                 <div><img src="PoweredBy_200px-Black_HorizText.png" /></div>
@@ -29,21 +31,25 @@
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-    $.ajax({
-        url: "quotes.json",
-        success: function (data) {
-            var rand = Math.floor(Math.random() * data.length);
-            var obj = data[rand];
-            $('#quote').text(obj['quote']);
-            $('#person').text(' ~ ' + obj['person']);
-            $.ajax({
-                url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
-                success: function (data) {
-                    $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
-                }
-            });
-        }
-    });
+    function getQuote() {
+        $.ajax({
+            url: "quotes.json",
+            success: function (data) {
+                var rand = Math.floor(Math.random() * data.length);
+                var obj = data[rand];
+                $('#quote').text(obj['quote']);
+                $('#person').text(' ~ ' + obj['person']);
+                $.ajax({
+                    url: 'http://api.giphy.com/v1/gifs/translate?s=cats&api_key=dc6zaTOxFJmzC',
+                    success: function (data) {
+                        $('#image')[0].innerHTML = '<img src="' + data.data.images.downsized.url + '" />';
+                    }
+                });
+            }
+        });
+    }
+
+    getQuote();
 </script>
 
 <script>
